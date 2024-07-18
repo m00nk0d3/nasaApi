@@ -4,10 +4,10 @@ const app = require('./app');
 const { loadPlanetsData } = require('./models/planets.model');
 const {mongoConnect} = require('./services/mongo');
 
-await mongoConnect();
+mongoConnect();
 const server = http.createServer(app);
 
-await loadPlanetsData();
+loadPlanetsData();
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 async function startServer () {
