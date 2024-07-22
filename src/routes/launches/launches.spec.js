@@ -14,7 +14,7 @@ describe("Testing API", () => {
 
         test("It should respond with 200 success", async () => {
             const response = await request(app)
-                .get("/launches")
+                .get("/v1/launches")
             expect(response.statusCode).toEqual(200)
         });
     })
@@ -38,7 +38,7 @@ describe("Testing API", () => {
         }
         test("It should respond with 201 created", async () => {
             const response = await request(app)
-                .post("/launches")
+                .post("/v1/launches")
                 .send(completeLauchData)
             const requestDate = new Date(completeLauchData.launchDate).valueOf()
             const responseDate = new Date(response.body.launchDate).valueOf()
@@ -49,14 +49,14 @@ describe("Testing API", () => {
 
         test("It should catch missing required properties", async () => {
             const response = await request(app)
-                .post("/launches")
+                .post("/v1/launches")
                 .send(launchDataWithoutDate)
             expect(response.body).toStrictEqual({ error: "Missing required launch property" })
         })
 
         test("It should catch invalid dates", async () => {
             const response = await request(app)
-                .post("/launches")
+                .post("/v1/launches")
                 .send(launchDataWithInvalidDate)
             expect(response.body).toStrictEqual({ error: "Invalid launch date" })
         })
