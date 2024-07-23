@@ -1,0 +1,1 @@
+This is a study project for Node.js BE development
