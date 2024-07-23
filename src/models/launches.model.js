@@ -45,7 +45,6 @@ async function populateLaunches() {
         return payload['customers']
       })
     }
-    console.log(`${launch.flightNumber} ${launch.mission} ${launch.rocket} ${launch.launchDate}`)
     await saveLaunch(launch)
   }
 
@@ -82,7 +81,7 @@ async function existsLaunchWithId(launchId) {
 }
 
 async function getLatestFlightNumber() {
-  const latestFlightNumber = (await launches.findOne().sort('-flightNumber')).flightNumber;
+  const latestFlightNumber = (await launches.findOne().sort('-flightNumber'))?.flightNumber;
   if (!latestFlightNumber) {
     return 100;
   }
